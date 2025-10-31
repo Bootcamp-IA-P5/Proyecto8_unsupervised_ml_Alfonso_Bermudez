@@ -1,4 +1,4 @@
-# 🍄 Proyecto VIII · Unsupervised Machine Learning (Mushroom Dataset)
+# 🍄 Taller de Aprendizaje Automático No Supervisado (Mushrooms Dataset)
 **Autor:** Alfonso Bermúdez  
 **Bootcamp IA – Proyecto Individual**
 
@@ -17,7 +17,7 @@ El objetivo es analizar si los hongos pueden clasificarse como **comestibles o v
 Proyecto8_unsupervised_ml_Alfonso_Bermudez/
 │
 ├── notebooks/
-│   └── unsupervised_ml_mushroom.ipynb
+│   └── EDA_unsupervised_ml_mushrooms.ipynb
 ├── data/
 ├── docs/
 ├── src/
