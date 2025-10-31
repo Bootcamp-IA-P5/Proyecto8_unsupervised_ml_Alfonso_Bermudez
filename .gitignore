@@ -1,0 +1,33 @@
+# Entornos virtuales
+.venv/
+env/
+venv/
+
+# Archivos de sistema
+__pycache__/
+.ipynb_checkpoints/
+.DS_Store
+Thumbs.db
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos de compilación
+*.pyc
+*.pyo
+
+# Salidas de notebooks
+notebooks/.ipynb_checkpoints
+notebooks/*.nbconvert.ipynb
+
+# Archivos locales de VSCode
+.vscode/
+.history/
+
+# Datos grandes
+data/*.csv
+data/*.data
+
+# Archivos PDF generados automáticamente
+docs/*.pdf
