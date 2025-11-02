@@ -67,30 +67,42 @@ Puedes obtener el dataset desde el siguiente enlace:
 
 ---
 
-## 🧩 Resultados comparativos
+## 🧩 Resultados y análisis comparativo
 
-| Método | Tipo | Métrica | Resultado | Observaciones |
-|:--|:--|:--|:--:|:--|
-| **PCA (2D)** | Reducción | Varianza total explicada | 16.5 % | Separación parcial entre clases. |
-| **K-Means** | No supervisado | Accuracy (k = 2) | 0.892 | Detecta dos grupos con solapamientos leves. |
-| **t-SNE** | No supervisado | Visualización | — | Dos grupos visibles con fronteras difusas. |
-| **Random Forest** | Supervisado | Accuracy | 0.999 | Clasificación perfecta gracias a etiquetas reales. |
+Durante el análisis se observaron distintos comportamientos según la técnica aplicada.  
+El resumen siguiente refleja tanto los **resultados obtenidos** como las **decisiones razonadas** en cada fase:
+
+| Método | Tipo | Métrica / Resultado | Observaciones |
+|:--|:--|:--|:--|
+| **PCA (2D)** | Reducción | Varianza total explicada: **16.5 %** | Las dos primeras componentes principales (PC1, PC2) permiten visualizar cierta separación entre *comestibles* y *venenosos*, aunque con solapamientos. |
+| **K-Means (Exploratorio)** | No supervisado | Método del codo → **k ≈ 4–5**  | La inercia se estabiliza a partir de k=4–5, indicando que podrían existir subgrupos dentro de las clases principales. |
+| **Coeficiente Silhouette** | No supervisado | Máx. en **k = 9**, valor medio **≈ 0.21** | Sugiere una estructura interna algo más compleja y difusa; los clusters no son totalmente compactos. |
+| **K-Means (Forzado k=2)** | No supervisado | Accuracy ≈ **89 %** respecto a las clases reales | Se observa una buena correspondencia con las etiquetas (*edible / poisonous*), aunque con cierto solapamiento. |
+| **t-SNE** | No supervisado | Visualización 2D no lineal | Refuerza la existencia de dos grupos principales con fronteras poco definidas. |
+| **Random Forest (GridSearchCV)** | Supervisado | Accuracy ≈ **99.9 %** | Clasificación prácticamente perfecta al usar las etiquetas reales. |
 
 ---
 
-## 🔍 Conclusiones finales
+## 🔍 Interpretación global y conclusiones
 
-- El conjunto **presenta una estructura naturalmente separable** en dos grandes grupos (comestibles y venenosos).  
-- La variable **`odor`** tiene una capacidad predictiva excepcional: puede casi determinar la clase por sí sola.  
-- **PCA** y **t-SNE** permiten observar esta separación desde la perspectiva no supervisada.  
-- **K-Means** logra identificar grupos coherentes sin conocer las etiquetas (≈ 89 % de coincidencia).  
-- **Random Forest**, al incorporar las etiquetas, alcanza una clasificación prácticamente perfecta (**≈ 100 %**).  
+- El **PCA** mostró que las dos primeras componentes solo explican el **16.5 %** de la varianza,  
+  lo cual es esperable en datasets categóricos con muchas variables codificadas.  
+  Aun así, permitió identificar una **separación parcial** entre las clases.
+- El **K-Means** reveló una estructura interna **no perfectamente binaria**, con posibles **subgrupos naturales** dentro de las clases *edible* y *poisonous* (k ≈ 4–5).  
+  Esto puede deberse a combinaciones específicas de variables como *odor*, *color de esporas* o *hábitat*.
+- Al **forzar k=2**, los clusters se alinearon en un **89 %** con las etiquetas reales,  
+  lo que confirma una **separación latente**, aunque con zonas de intersección.
+- El **coeficiente silhouette** relativamente bajo (≈ 0.21) sugiere que los límites entre grupos son difusos,  
+  probablemente por la alta dimensionalidad y el solapamiento entre características visuales.
+- El modelo **Random Forest**, en cambio, logró una precisión **casi perfecta (~100%)**,  
+  lo que confirma que el conjunto de variables —especialmente `odor`, `spore-print-color` y `ring-type`—  
+  contienen suficiente información para discriminar las clases con exactitud.
 
-> 🔹 **Conclusión general:**  
-> Los métodos no supervisados revelan patrones internos consistentes,  
-> mientras que el modelo supervisado confirma y perfecciona esa estructura.  
-> Ambos enfoques se complementan: **el no supervisado explora**,  
-> **el supervisado predice** con precisión.
+> 🧠 En resumen:
+> - Los métodos **no supervisados** evidencian patrones coherentes, pero imperfectos.  
+> - El modelo **supervisado** aprovecha esa estructura subyacente para lograr una clasificación exacta.  
+> - Este contraste refuerza la importancia de combinar **análisis exploratorio** con **modelos predictivos**,  
+>   para comprender tanto la estructura como el comportamiento de los datos.
 
 ---
 
