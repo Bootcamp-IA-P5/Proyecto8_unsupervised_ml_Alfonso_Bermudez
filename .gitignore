@@ -28,6 +28,7 @@ notebooks/*.nbconvert.ipynb
 # Datos grandes
 data/*.csv
 data/*.data
+data/agaricus-lepiota.data
 
 # Archivos PDF generados automáticamente
 docs/*.pdf

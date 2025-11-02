@@ -43,6 +43,7 @@ Proyecto8_unsupervised_ml_Alfonso_Bermudez/
 ├── notebooks/
 │   └── EDA_unsupervised_ml_mushrooms.ipynb
 ├── data/
+│   └──agaricus-lepiota.data     <-- dataset origial de UCI (no subido al repositorio)
 ├── docs/
 ├── src/
 ├── .gitignore
